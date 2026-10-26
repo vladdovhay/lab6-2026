@@ -1,33 +1,33 @@
 """
-Юніт-тести для Лабораторної роботи № 6.
-
-Студенти повинні доповнити цей файл тестами для своїх рішень.
+Тести для пакета temperature_converter.
 """
 import unittest
 
-# TODO: Імпортуйте функції для тестування з вашого пакета
-# from src.назва_вашого_пакета.назва_модуля import ваша_функція
+from src.celsius_fahrenheit import celsius_to_fahrenheit, fahrenheit_to_celsius
+from src.celsius_kelvin import celsius_to_kelvin, kelvin_to_celsius
 
-class TestLab6(unittest.TestCase):
 
-    def test_example(self):
-        """Приклад тестового випадку."""
-        self.assertEqual(2 + 2, 4)
+class TestTemperatureConverter(unittest.TestCase):
 
-    # TODO: Додайте тестові випадки для функцій у вашому пакеті.
-    # def test_your_function(self):
-    #     """Тестовий випадок для вашої_функції."""
-    #     # Приклад перевірки
-    #     self.assertEqual(ваша_функція(вхідні_дані), очікуваний_результат)
+    def test_celsius_to_fahrenheit(self):
+        self.assertAlmostEqual(celsius_to_fahrenheit(0), 32)
+        self.assertAlmostEqual(celsius_to_fahrenheit(100), 212)
+        self.assertAlmostEqual(celsius_to_fahrenheit(-40), -40)
 
-    # def test_another_function_with_edge_cases(self):
-    #     """Тестовий випадок для іншої_функції з граничними випадками."""
-    #     # Тест з нулем
-    #     self.assertEqual(інша_функція(0), очікуваний_для_нуля)
-    #     # Тест з від'ємним числом
-    #     self.assertEqual(інша_функція(-5), очікуваний_для_від'ємного)
-    #     # Тест з великим числом
-    #     self.assertEqual(інша_функція(1000), очікуваний_для_великого)
+    def test_fahrenheit_to_celsius(self):
+        self.assertAlmostEqual(fahrenheit_to_celsius(32), 0)
+        self.assertAlmostEqual(fahrenheit_to_celsius(212), 100)
+        self.assertAlmostEqual(fahrenheit_to_celsius(-40), -40)
+
+    def test_celsius_to_kelvin(self):
+        self.assertAlmostEqual(celsius_to_kelvin(0), 273.15)
+        self.assertAlmostEqual(celsius_to_kelvin(100), 373.15)
+        self.assertAlmostEqual(celsius_to_kelvin(-273.15), 0)
+
+    def test_kelvin_to_celsius(self):
+        self.assertAlmostEqual(kelvin_to_celsius(273.15), 0)
+        self.assertAlmostEqual(kelvin_to_celsius(373.15), 100)
+        self.assertAlmostEqual(kelvin_to_celsius(0), -273.15)
 
 
 if __name__ == '__main__':

@@ -1,37 +1,24 @@
 """
-Основна програма для Лабораторної роботи № 6.
-
-Цей скрипт повинен імпортувати та використовувати створений вами пакет,
-щонайменше один модуль зі стандартної бібліотеки Python,
-та щонайменше один сторонній пакет.
+Головна програма, яка використовує пакет temperature_converter.
 """
-
-# Приклад імпорту зі стандартної бібліотеки
 import math
-
-# Приклад імпорту стороннього пакета
 import requests
 
-# TODO: Імпортуйте функції зі створеного вами пакета.
-# from назва_вашого_пакета.назва_модуля import ваша_функція
-
-
-def main():
-    """Основна функція для демонстрації використання модулів та пакетів."""
-    # Приклад використання модуля стандартної бібліотеки
-    print(f"Квадратний корінь з 16: {math.sqrt(16)}")
-
-    # Приклад використання стороннього пакета
-    try:
-        response = requests.get("https://api.github.com", timeout=10)
-        response.raise_for_status()  # Викликати виняток для невдалих статус-кодів
-        print("Успішно підключено до GitHub API.")
-    except requests.exceptions.RequestException as e:
-        print(f"Не вдалося підключитися до GitHub API: {e}")
-
-    # TODO: Додайте виклики ваших власних функцій з вашого пакета.
-    # print(f"Результат моєї функції: {ваша_функція(якісь_вхідні_дані)}")
-
+from src.celsius_fahrenheit import celsius_to_fahrenheit, fahrenheit_to_celsius
+from src.celsius_kelvin import celsius_to_kelvin, kelvin_to_celsius
 
 if __name__ == "__main__":
-    main()
+    print(f"25 °C у Фаренгейтах: {celsius_to_fahrenheit(25)}")
+    print(f"100 °F у Цельсіях: {fahrenheit_to_celsius(100):.2f}")
+    print(f"0 °C у Кельвінах: {celsius_to_kelvin(0)}")
+    print(f"300 K у Цельсіях: {kelvin_to_celsius(300):.2f}")
+
+    # модуль зі стандартної бібліотеки
+    print(f"25.3 °C у Фаренгейтах (округлено вгору): {math.ceil(celsius_to_fahrenheit(25.3))}")
+
+    # сторонній пакет, встановлений через pip
+    try:
+        response = requests.get("https://www.google.com", timeout=5)
+        print(f"Статус код запиту до Google: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Помилка при виконанні запиту: {e}")
