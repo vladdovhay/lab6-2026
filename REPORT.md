@@ -34,7 +34,7 @@
 
 *Результат виконання*
 
-![annswer.png](../../Desktop/annswer.png)
+![annswer.png](image/annswer.png)
 
 ---
 
